@@ -1,0 +1,6 @@
+{
+    "ignore": ["node_modules", "src/**/*.test.js"],
+    "ext": "js,json",
+    "watch": ["src"]
+}
+  
