@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { register, login, checkPhoneNumber, getAllUsers, exportAllUsers, getTopFifty, getTotalJap } from "../controllers/userController.js";
+import { deleteUser, register, login, checkPhoneNumber, getAllUsers, exportAllUsers, getTopFifty, getTotalJap } from "../controllers/userController.js";
 import { isAdmin } from "../middlewares/authMiddleware.js";
 import { isAuthorized } from "../middlewares/authMiddleware.js";
 
 const userRoutes = Router();
 
 // Route to check if a phone number exists in the database
+userRoutes.delete("/", deleteUser);
 userRoutes.post("/checkPhoneNumber", checkPhoneNumber);
 userRoutes.post("/register", register);
 userRoutes.post("/login", login);

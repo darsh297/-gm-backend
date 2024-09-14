@@ -504,6 +504,36 @@ export async function getTotalJap(req, res) {
   }
 }
 
+export async function deleteUser(req, res) {
+  try {
+    let id = req.query.id;
+    console.log("id:----> ", id);
+    const deleteUsers = await User.deleteOne({_id:req.query.id}).exec();
+    if(deleteUsers){
+      res.json({
+        status: 200,
+        message: "User deleted successfully",
+        data: deleteUsers,
+      });
+    }else{
+      return res.json({
+        status: 400,
+        message: "Invalid User.",
+        data: {
+          error: "This user is not find in database.",
+        },
+      });
+    }
+  } catch (error) {
+    console.log("ERORROR", error);
+    res.json({
+      status: 500,
+      message: "Something went wrong while get user data",
+      data: error,
+    });
+  }
+}
+
 // Function to format date as "DD-MM-YYYY"
 function formatDate(date) {
   const day = String(date.getDate()).padStart(2, "0");
